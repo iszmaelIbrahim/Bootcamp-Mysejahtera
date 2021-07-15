@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Clone Twitter</title>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <br><br><br>
+    <h3 align="center" style="color:blue">My Sejahtera</h3>
+    <hr>
+    <div class="container d-flex justify-content-center">
+
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <fieldset class="form-group pt-5">
+                <legend class="border-bottom mb-4 d-flex justify-content-center">
+                    Login
+                </legend>
+                {{form.as_p}}
+            </fieldset>
+
+            <div class="form-group d-flex justify-content-center p-2">
+                <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+            <div class="form-group d-flex justify-content-center p-2">
+                <a href="#">
+                    <p>Create New Account</p>
+                </a>
+            </div>
+        </form>
+    </div>
+
+    {% if messages %}
+    {% for message in messages%}
+
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+
+    {% endfor%}
+    {% endif %}
+</body>
+
+</html>

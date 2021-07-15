@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+
+{% block content%}
+
+<div class="container pt-5" style="height: 800px;">
+    <div class="row d-flex justify-content-center">
+
+        <!-- <div class="media d-flex justify-content-center">
+            <img class="rounded-circle account-img img-fluid" src="{{ user.profile.image.url}}" alt="profile-image">
+        </div> -->
+
+        <br>
+
+        <div class="d-flex justify-content-center p-4">
+            <h3 class="text-white"> @{{ user.username }}</h3>
+
+        </div>
+
+        <br>
+        <br>
+        
+        <br>
+        <div class="row d-flex justify-content-center p-3">
+            <div class="col-md-6 card">
+                
+                   <p>{{user.vaccine.name}}</p> 
+                   <p>{{user.vaccine.age}}</p> 
+               
+                   <p>{{user.vaccine.state}}</p> 
+                   <p>{{user.vaccine.date}}</p> 
+            </div>
+        </div>
+        <br>
+        <div class="row d-flex justify-content-center p-3">
+            <div class="col-md-6 d-flex justify-content-end">
+                <a href="{% url 'vaccineregister'%}"><button class="btn btn-primary">Update vaccine</button> </a>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock content%}

@@ -1,0 +1,81 @@
+{%extends 'main/base.html'%}
+
+
+{%block content%}
+<br>
+<br>
+<div class="container">
+    <h1>new dashboard</h1>
+
+    <div class="row">
+
+        <div class="col-md-2">
+            {% if user.username == 'admin' %}
+            <a class="btn btn-sm btn-primary mb-4 mr-3 " href="{% url 'create' %}">
+                New post
+            </a>
+            {% endif %}
+
+            <a class="btn btn-sm btn-primary mb-4 mr-3 " href="{% url 'health' %}">
+                maklumat kesihatan
+            </a>
+
+            <a class="btn btn-sm btn-primary mb-4 mr-3 " href="{% url 'vaccine' %}">
+                vaccine
+            </a>
+
+            <a class="btn btn-sm btn-primary mb-4 mr-3 " href="{% url 'qrcode' %}">
+                QR Code
+            </a>
+
+            <a class="btn btn-sm btn-primary mb-4 mr-3 " href="{% url 'location' %}">
+                Location
+            </a>
+
+        </div>
+        <div class="col-md-8">
+            {% for post in object_list %}
+
+            <div class="card mb-3">
+                <div class="card-header p-3">
+                    <h5> Covid-19 Update</h5>
+                    <p>{{post.date_posted}}  -  {{post.author}}</p>
+                </div>
+                <div class="card-body">
+                    <p>{{post.text}}</p>
+                    <!-- <p class="card-text">{{post.text}}</p> -->
+
+                    {% if user.username == 'admin' %}
+                    <a class="btn btn-sm btn-info ml-2" style="font-size: 14px"
+                        href="{% url 'post-update' post.id %}">Update</a>
+                    <a class="btn btn-sm btn-danger ml-2" style="font-size: 14px"
+                        href="{% url 'post-delete' post.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2">
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4> Location History</h4>
+                    <!-- <p>{{post.date_posted}}</p> -->
+                </div>
+                <div class="card-body">
+                    {% for post in posts %}
+                    <h5 class="card-title">{{post.text}}</h5>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+{%endblock content%}

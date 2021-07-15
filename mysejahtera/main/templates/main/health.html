@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+
+{% block content%}
+
+<div class="container pt-5" style="height: 800px;">
+    <div class="row d-flex justify-content-center">
+
+
+        <br>
+
+        <div class="d-flex justify-content-center p-4">
+            <h3 class="text-white"> @{{ user.username }}</h3>
+
+        </div>
+
+
+        <br>
+        <div class="row d-flex justify-content-center p-3">
+            <div class="col-md-6 card">
+                <h3>Your Health Status</h3>
+
+                <h4>Have you ever experience any of the symptom?</h4>
+                <br>
+                <p>name : {{user.health.name}}</p> 
+                <p>age : {{user.health.age}}</p> 
+                <p>fever : {{user.health.fever}}</p> 
+                <p>Chills : {{user.health.Chills}}</p> 
+                <p>headache : {{user.health.headache}}</p> 
+                <p>vomiting : {{user.health.vomiting}}</p> 
+                <p>diarrhea : {{user.health.diarrhea}}</p> 
+            </div>
+        </div>
+        <br>
+
+        <div class="row d-flex justify-content-center p-3">
+            <div class="col-md-6 d-flex justify-content-end">
+                <a href="{% url 'healthupdate'%}"><button class="btn btn-primary">Update Status</button> </a>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock content%}
