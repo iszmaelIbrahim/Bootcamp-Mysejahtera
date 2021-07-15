@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     # path('', TweetListView.as_view(), name='home'),
-    path('', views.home.as_view(), name='home'),
+    path('', views.home, name='home'),
     path('create/', views.PostCreateView.as_view(), name='create'),
     path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/del/', views.PostDeleteView.as_view(), name='post-delete'),
@@ -18,7 +18,7 @@ urlpatterns = [
     path('vaccineregister/', views.vaccine, name='vaccineregister'),
 
 
-    path('qrcode/', views.qrcode.as_view(), name='qrcode'),
+    path('qrcode/', views.qrcode, name='qrcode'),
     path('qrcreate/', views.create_qr, name='qrcreate'),
     # path('qrupdate/<int:pk>/', views.update_qr , name='qr-update'),
 

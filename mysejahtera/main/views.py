@@ -17,10 +17,10 @@ import json
 from user.models import profile
 # Create your views here.
 
-# @login_required
-# def home(request):
-#     context = {'posts':post.objects.all}
-#     return render(request, 'main/home.html', context)
+@login_required
+def home(request):
+    context = {'posts':post.objects.all, 'location': geolocation.objects.filter(author=request.user)}
+    return render(request, 'main/home.html', context)
 
 
 def is_users(post_user, logged_user):
@@ -30,30 +30,12 @@ def is_users(post_user, logged_user):
 PAGINATION_COUNT = 3
 
 
-class home(LoginRequiredMixin, ListView):
-    model = post
-    template_name = 'main/home.html'
-    ordering = ['-date_posted']
+# class home(LoginRequiredMixin, ListView):
+#     model = post
+#     template_name = 'main/home.html'
+#     ordering = ['-date_posted']
 
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        # print (data)
-
-        all_users = []
-        data_counter = post.objects.values('author')\
-            .annotate(author_count=Count('author'))\
-            .order_by('-author_count')[:6]
-
-        print (post.objects.values('text'))
-
-        for aux in data_counter:
-            all_users.append(User.objects.filter(pk=aux['author']).first())
-        
-        # data['preference'] = Preference.objects.all()
-        
-        data['all_users'] = all_users
-        print(all_users, file=sys.stderr)
-        return data
+    
         
 
 
@@ -140,16 +122,16 @@ def healthupdate(request):
 
 # qrcode
 
-# def qrcode(request):
-#     context = {'qrcode': location_qr.objects.all}
-#     return render(request, 'main/qrcode.html', context)
+def qrcode(request):
+    context = {'qrcode': location_qr.objects.filter(author=request.user)}
+    return render(request, 'main/qrcode.html', context)
 
-class qrcode(LoginRequiredMixin, ListView):
-    model = location_qr
-    print (location_qr.objects.all)
-    template_name = 'main/qrcode.html'
-    # context_object_name = 'posts'
-    paginate_by = PAGINATION_COUNT
+# class qrcode(LoginRequiredMixin, ListView):
+#     model = location_qr
+#     print (location_qr.objects.all)
+#     template_name = 'main/qrcode.html'
+#     # context_object_name = 'posts'
+#     paginate_by = PAGINATION_COUNT
     
 
 def create_qr(request):
@@ -176,6 +158,7 @@ def create_qr(request):
 # location
 
 locationdata = {}
+@login_required
 def location(request):
 
     ip = requests.get('https://api.ipify.org?format=json')
