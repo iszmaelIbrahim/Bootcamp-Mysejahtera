@@ -5,12 +5,12 @@
 <br>
 <br>
 <div class="container">
-    <h1>new dashboard</h1>
 
     <div class="row">
-
+        <h1 class="display-5 text-white p-3">My Sejahtera Dashboard</h1>
        
         <div class="col-md-8">
+            
 
             {% if user.username == "admin" %}
             <div class="jumbotron p-3">
@@ -33,7 +33,7 @@
             <div class="card mb-3">
                 <div class="card-header p-3">
                     <h5> Covid-19 Update</h5>
-                    <p>{{post.date_posted}} - {{post.author}}</p>
+                    <p>{{post.date_posted}}</p>
                 </div>
                 <div class="card-body">
                     <p>{{post.text}}</p>
@@ -64,7 +64,8 @@
                 <div class="card-body">
                     {% for loc in location %}
                     <!-- <h5 class="card-title">{{post.text}}</h5> -->
-                    <p>{{loc.city }} - {{loc.author }} </p>
+                    <p>city : {{loc.city}}</p>
+                    <p>DateTime : {{loc.location_date}}</p>
                     <hr>
                     {% endfor %}
                 </div>

@@ -5,7 +5,7 @@ import qrcode
 from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
-import json
+
 
 # Create your models here.
 
@@ -109,7 +109,8 @@ class geolocation(models.Model):
     latitude = models.CharField(max_length=200, default='')
     longitude = models.CharField(max_length=200, default='')
     country_code = models.CharField(max_length=200, default='')
-    timezone = models.CharField(max_length=200, default='')
+    country_timezone = models.CharField(max_length=200, default='')
+    location_date = models.DateTimeField(default=timezone.now)
 
     
 

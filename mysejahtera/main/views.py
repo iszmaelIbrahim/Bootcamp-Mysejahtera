@@ -19,7 +19,7 @@ from user.models import profile
 
 @login_required
 def home(request):
-    context = {'posts':post.objects.all, 'location': geolocation.objects.filter(author=request.user)}
+    context = {'posts':post.objects.order_by('-date_posted').all, 'location': geolocation.objects.filter(author=request.user)}
     return render(request, 'main/home.html', context)
 
 
@@ -34,10 +34,6 @@ PAGINATION_COUNT = 3
 #     model = post
 #     template_name = 'main/home.html'
 #     ordering = ['-date_posted']
-
-    
-        
-
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = post
@@ -125,13 +121,6 @@ def healthupdate(request):
 def qrcode(request):
     context = {'qrcode': location_qr.objects.filter(author=request.user)}
     return render(request, 'main/qrcode.html', context)
-
-# class qrcode(LoginRequiredMixin, ListView):
-#     model = location_qr
-#     print (location_qr.objects.all)
-#     template_name = 'main/qrcode.html'
-#     # context_object_name = 'posts'
-#     paginate_by = PAGINATION_COUNT
     
 
 def create_qr(request):
@@ -194,8 +183,9 @@ def submit_loc(request):
     loc.latitude = locationdata["lat"]
     loc.longitude = locationdata["lon"]
     loc.country_code = locationdata["countryCode"]
-    loc.timezone = locationdata["timezone"]
+    loc.country_timezone = locationdata["timezone"]
     loc.author = request.user
     loc.save()
 
-    return render(request, 'main/location.html', {'data': location_data})
+    # return render(request, 'main/location.html', {'data': location_data})
+    return redirect('home')

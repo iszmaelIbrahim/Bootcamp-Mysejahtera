@@ -17,11 +17,8 @@ urlpatterns = [
     path('vaccine/', views.vaccineview, name= 'vaccine'),
     path('vaccineregister/', views.vaccine, name='vaccineregister'),
 
-
     path('qrcode/', views.qrcode, name='qrcode'),
     path('qrcreate/', views.create_qr, name='qrcreate'),
-    # path('qrupdate/<int:pk>/', views.update_qr , name='qr-update'),
-
 
     path('location/', views.location, name='location'),
     path('locationsubmit/', views.submit_loc, name='locationsubmit')

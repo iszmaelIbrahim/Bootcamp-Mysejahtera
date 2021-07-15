@@ -6,29 +6,20 @@
 <div class="container pt-5" style="height: 800px;">
     <div class="row d-flex justify-content-center">
 
-        <!-- <div class="media d-flex justify-content-center">
-            <img class="rounded-circle account-img img-fluid" src="{{ user.profile.image.url}}" alt="profile-image">
-        </div> -->
 
         <br>
 
-        <div class="d-flex justify-content-center p-4">
-            <h3 class="text-white"> @{{ user.username }}</h3>
-
-        </div>
-
-        <br>
-        <br>
-        
         <br>
         <div class="row d-flex justify-content-center p-3">
             <div class="col-md-6 card">
-                
-                   <p>{{user.vaccine.name}}</p> 
-                   <p>{{user.vaccine.age}}</p> 
-               
-                   <p>{{user.vaccine.state}}</p> 
-                   <p>{{user.vaccine.date}}</p> 
+                <h3 class="pt-3 pb-3">Please Update your Vaccine date.</h3>
+
+
+                <p>Full Name : {{user.vaccine.name}}</p>
+                <p>Age : {{user.vaccine.age}}</p>
+
+                <p>Vaccine State : {{user.vaccine.state}}</p>
+                <p>Vaccine Date : {{user.vaccine.date}}</p>
             </div>
         </div>
         <br>

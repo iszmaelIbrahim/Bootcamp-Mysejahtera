@@ -2,20 +2,27 @@
 
 {% block content %}
 <div class="container pt-4">
+    
 
-    <a class="btn btn-primary mb-4 mr-3 " href="{% url 'qrcreate' %}">
-        Create New QR
-    </a>
+    <div class="row d-flex justify-content-center flex-wrap">
+        <div class="col-md-8 d-flex justify-content-end">
+            <a class="btn btn-primary mb-4 mr-3 " href="{% url 'qrcreate' %}">
+                Create New QR
+            </a>
+        </div>
+
+    </div>
+
     <div class="row d-flex justify-content-center flex-wrap">
 
-        <div class="full-width row">
+        <!-- <div class="full-width row">
             <div class="col-6 no-padding">
                 <h6 style="position: absolute; bottom: 0; right: 0" class="text-white mb-3">
                     {{ page_obj.start_index }} - {{ page_obj.end_index }} of
                     {{ paginator.count }}
                 </h6>
             </div>
-        </div>
+        </div> -->
 
         {% for qr in qrcode %}
 
@@ -29,7 +36,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <!-- <p>{{qr.id}}</p> -->
-                        <p>{{qr.author}}</p>
+                        <!-- <p>{{qr.author}}</p> -->
                         <p>{{qr.address}}</p>
                         <p>{{qr.city}}</p>
                         <p>{{qr.state}}</p>
@@ -51,7 +58,7 @@
 
         {% endfor %}
 
-        <div class="full-width d-flex justify-content-center">
+        <!-- <div class="full-width d-flex justify-content-center">
             {% if is_paginated %}
             {% if page_obj.has_previous %}
             <a class="btn btn-sm btn-outline-secondary mb-4 mr-2" href="?page=1">First</a>
@@ -74,7 +81,7 @@
                     href="?page={{ page_obj.paginator.num_pages }}">Last</a>
                 {% endif %}
                 {% endif %}
-        </div>
+        </div> -->
     </div>
 
 
